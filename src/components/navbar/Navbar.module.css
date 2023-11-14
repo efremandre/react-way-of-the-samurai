@@ -1,0 +1,13 @@
+.navbar {
+}
+
+.link {
+    display: block;
+    padding: .5rem 0;
+    font-size: 18px;
+    transition: opacity .6s;
+}
+
+.link:hover {
+    opacity: .6;
+}
