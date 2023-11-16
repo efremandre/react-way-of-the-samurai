@@ -1,24 +1,10 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-
-const User = ({name, id}) => {
-    let path = `/dialogs/${id}`
-    return (
-        <div className={`${s.user} ${s.active}`}>
-            <NavLink to={path}>{name}</NavLink>
-        </div>
-    )
-}
-
-const Message = ({message}) => {
-    return (
-        <div className={s.message}>{message}</div>
-    )
-}
+import Message from "./message/Message";
+import User from "./user/User";
 
 const Dialogs = () => {
-    const users = [
+    const dialogs = [
         {id: 1, name: 'Viktor'},
         {id: 2, name: 'Sveta'},
         {id: 3, name: 'Anna'},
@@ -34,23 +20,18 @@ const Dialogs = () => {
         {id: 4, message: 'fine and you?'},
     ]
 
+    const dialogsElements = dialogs.map (user => <User key={user.id} name={user.name} id={user.id}/>)
+    const messagesElements = messages.map (message => <Message key={message.message} message={message.message}/>)
+
     return (
         <div className={s.dialogs}>
             <h2>Dialogs</h2>
             <div className={s.wrapper}>
                 <div className={s.usersDialogs}>
-                    <User name={users[0].name} id={users[0].id}/>
-                    <User name={users[1].name} id={users[1].id}/>
-                    <User name={users[2].name} id={users[2].id}/>
-                    <User name={users[3].name} id={users[3].id}/>
-                    <User name={users[4].name} id={users[4].id}/>
-                    <User name={users[5].name} id={users[5].id}/>
+                    {dialogsElements}
                 </div>
                 <div className={s.chat}>
-                    <Message message={messages[0].message}/>
-                    <Message message={messages[1].message}/>
-                    <Message message={messages[2].message}/>
-                    <Message message={messages[3].message}/>
+                    {messagesElements}
                 </div>
             </div>
         </div>
