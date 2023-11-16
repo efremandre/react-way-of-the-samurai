@@ -8,7 +8,7 @@ import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 
-const App = (props) => {
+const App = ({posts, dialogs, messages}) => {
     return (
         <div className="grid">
             <BrowserRouter>
@@ -16,8 +16,8 @@ const App = (props) => {
                 <Navbar/>
                 <main className='main'>
                     <Routes>
-                        <Route path='/profile' element={<Profile/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs/>}/>
+                        <Route path='/profile' element={<Profile posts={posts}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs dialogs={dialogs} messages={messages}/>}/>
                         <Route path='/news' element={<News/>}/>
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
