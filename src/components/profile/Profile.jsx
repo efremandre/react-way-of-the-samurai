@@ -6,7 +6,7 @@ import Wall from "./wall/Wall";
 
 const Profile = () => {
     return (
-        <div className={`${s.profile} profile`}>
+        <div className={s.profile}>
             <ProfileHeader/>
             <ProfileInfo/>
             <Wall/>

@@ -1,5 +1,5 @@
 import React from "react";
-import s from './profileHeader.module.css'
+import s from './ProfileHeader.module.css'
 
 const ProfileHeader = () => {
     return (

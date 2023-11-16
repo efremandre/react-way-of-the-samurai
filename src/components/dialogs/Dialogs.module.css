@@ -1,0 +1,48 @@
+.dialogs {
+    animation: active forwards 1s ease;
+}
+
+.wrapper {
+    display: flex;
+    gap: 2rem;
+}
+
+.usersDialogs {
+    flex: 0 1 20%;
+    border-right: 1px solid #000;
+}
+
+.chat {
+    flex: 0 1 80%;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: .5rem 1rem;
+    font-size: 22px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.active {
+    color: aquamarine;
+}
+
+.message:nth-child(even) {
+    text-align: right;
+}
+
+.user {
+    padding: .5em 1em;
+    font-size: 20px;
+}
+
+@keyframes active {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

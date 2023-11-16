@@ -1,5 +1,13 @@
-.profile {
+.music {
     animation: active forwards 1s ease;
+}
+
+.image {
+    overflow: hidden;
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #000;
 }
 
 @keyframes active {

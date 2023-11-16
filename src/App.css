@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 ul {
@@ -21,6 +22,10 @@ a {
   object-fit: cover;
 }
 
+h2 {
+  margin-bottom: 2rem;
+}
+
 body {
   color: #fff;
   background: #141414;
@@ -39,8 +44,7 @@ body {
 }
 
 .header,
-.navbar,
-.profile {
+.main {
   padding: 1em;
   border-radius: 8px;
   border: 1px solid #000;
@@ -49,4 +53,4 @@ body {
 
 .header {grid-area: 1 / 1 / 2 / 13;}
 .navbar { grid-area: 2 / 1 / 3 / 3; }
-.profile { grid-area: 2 / 3 / 3 / 13; }
+.main { grid-area: 2 / 3 / 3 / 13; }

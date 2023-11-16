@@ -1,0 +1,26 @@
+.postBody {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.info {}
+.name {}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: .5rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
