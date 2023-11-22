@@ -6,11 +6,17 @@ import App from "./App";
 import store from './redux/state'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const rerenderEntireTree = (store) => {
+const rerenderEntireTree = (state) => {
 
-    root.render(<App store={store}/>);
+    root.render(<App state={state}
+                     addPost={store.addPost.bind(store)}
+                     changeInputPost={store.changeInputPost.bind(store)}
+                     submitMessage={store.submitMessage.bind(store)}
+                     changeInputMessage={store.changeInputMessage.bind(store)}
+    />);
 }
 
-rerenderEntireTree(store);
+rerenderEntireTree(store.getState());
 store.subscribe(rerenderEntireTree);
+
 reportWebVitals();

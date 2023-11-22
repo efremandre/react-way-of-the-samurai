@@ -1,5 +1,5 @@
-const store = {
-    state: {
+let store = {
+    _state: {
         profilePage: {
             posts: [
                 {id: 1, name: 'Kate', like: 10, dislike: 0, text: 'Hi', image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'},
@@ -23,19 +23,22 @@ const store = {
                 {id: 3, message: 'How are you?'},
                 {id: 4, message: 'fine and you?', class: 'me'},
             ],
-            newTextMessage: 'ыыы'
+            newTextMessage: ''
         }
     },
-    rerenderEntireTree() {
+    getState() {
+        return this._state;
+    },
+    _callSubscriber() {
         console.log('Changed state');
     },
     changeInputPost(text) {
-        store.state.profilePage.newTextPost = text;
-        store.rerenderEntireTree(store);
+        this._state.profilePage.newTextPost = text;
+        this._callSubscriber(this._state);
     },
     changeInputMessage(text) {
-        store.state.dialogsPage.newTextMessage = text;
-        store.rerenderEntireTree(store.state);
+        this._state.dialogsPage.newTextMessage = text;
+        this._callSubscriber(this._state);
     },
     addPost() {
         let id = 4
@@ -45,28 +48,28 @@ const store = {
             name: 'Me',
             like: 0,
             dislike: 0,
-            text: store.state.profilePage.newTextPost,
+            text: this._state.profilePage.newTextPost,
             image: 'https://krd.mir-kvestov.ru/uploads/quests/7110/large/notreal_kosmos_photo1.jpg?1692275778'
         };
 
-        store.state.profilePage.posts.push(newPost);
-        store.state.profilePage.newTextPost = '';
-        store.rerenderEntireTree(store);
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newTextPost = '';
+        this._callSubscriber(this._state);
     },
     submitMessage(){
         let id = 4
         const newMessage = {
             id: id++,
-            message: store.state.dialogsPage.newTextMessage,
+            message: store._state.dialogsPage.newTextMessage,
             class: 'me'
         }
 
-        store.state.dialogsPage.messages.push(newMessage);
-        store.state.dialogsPage.newTextMessage = '';
-        store.rerenderEntireTree(store);
+        store._state.dialogsPage.messages.push(newMessage);
+        store._state.dialogsPage.newTextMessage = '';
+        store._callSubscriber(store._state);
     },
     subscribe(observer) {
-        this.rerenderEntireTree = observer;
+        this._callSubscriber = observer;
     }
 }
 
