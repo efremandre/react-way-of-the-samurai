@@ -3,7 +3,12 @@ import s from './Wall.module.css'
 import Post from "./post/Post";
 import AddPost from "./addPost/AddPost";
 
-const Wall = ({profilePage, addPost, changeInputPost}) => {
+const Wall = ({
+                  profilePage,
+                  addPost,
+                  changeInputPost
+              }) => {
+
     const postsElement = profilePage.posts.map(post => <Post key={post.id}
                                                  like={post.like}
                                                  dislike={post.dislike}

@@ -19,13 +19,13 @@ const App = (props) => {
                 <main className='main'>
                     <Routes>
                         <Route path='/profile'
-                               element={<Profile profilePage={props.state.profilePage}
-                                                 addPost={props.addPost}
-                                                 changeInputPost={props.changeInputPost}/>}/>
+                               element={<Profile profilePage={props.store.state.profilePage}
+                                                 addPost={props.store.addPost}
+                                                 changeInputPost={props.store.changeInputPost}/>}/>
                         <Route path='/dialogs/*'
-                               element={<Dialogs dialogsPage={props.state.dialogsPage}
-                                                 submitMessage={props.submitMessage}
-                                                 changeInputMessage={props.changeInputMessage}/>}/>
+                               element={<Dialogs dialogsPage={props.store.state.dialogsPage}
+                                                 submitMessage={props.store.submitMessage}
+                                                 changeInputMessage={props.store.changeInputMessage}/>}/>
                         <Route path='/news'
                                element={<News/>}/>
                         <Route path='/music'

@@ -1,8 +1,16 @@
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
-import {rerenderEntireTree} from "./redux/render";
+import App from "./App";
+import store from './redux/state'
 
-rerenderEntireTree(state);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const rerenderEntireTree = (store) => {
+
+    root.render(<App store={store}/>);
+}
+
+rerenderEntireTree(store);
+store.subscribe(rerenderEntireTree);
 reportWebVitals();
