@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+input,
+textarea,
+button{
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #5d5b5b;
+}
+
+button {
+  transition: opacity .5s;
+}
+
+button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
 ul {
   margin: 0;
   padding: 0;

@@ -7,8 +7,10 @@ import Dialogs from "./components/dialogs/Dialogs";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
+import {changeInputMessage} from "./redux/state";
 
-const App = ({posts, dialogs, messages}) => {
+const App = (props) => {
+
     return (
         <div className="grid">
             <BrowserRouter>
@@ -16,11 +18,20 @@ const App = ({posts, dialogs, messages}) => {
                 <Navbar/>
                 <main className='main'>
                     <Routes>
-                        <Route path='/profile' element={<Profile posts={posts}/>}/>
-                        <Route path='/dialogs/*' element={<Dialogs dialogs={dialogs} messages={messages}/>}/>
-                        <Route path='/news' element={<News/>}/>
-                        <Route path='/music' element={<Music/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/profile'
+                               element={<Profile profilePage={props.state.profilePage}
+                                                 addPost={props.addPost}
+                                                 changeInputPost={props.changeInputPost}/>}/>
+                        <Route path='/dialogs/*'
+                               element={<Dialogs dialogsPage={props.state.dialogsPage}
+                                                 submitMessage={props.submitMessage}
+                                                 changeInputMessage={props.changeInputMessage}/>}/>
+                        <Route path='/news'
+                               element={<News/>}/>
+                        <Route path='/music'
+                               element={<Music/>}/>
+                        <Route path='/settings'
+                               element={<Settings/>}/>
                     </Routes>
                 </main>
             </BrowserRouter>

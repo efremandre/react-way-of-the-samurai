@@ -4,12 +4,19 @@ import ProfileHeader from "./profileHeader/ProfileHeader";
 import ProfileInfo from "./profileInfo/ProfileInfo";
 import Wall from "./wall/Wall";
 
-const Profile = ({posts}) => {
+const Profile = ({
+                     profilePage,
+                     addPost,
+                     changeInputPost
+                 }) => {
+
     return (
         <div className={s.profile}>
             <ProfileHeader/>
             <ProfileInfo/>
-            <Wall posts={posts}/>
+            <Wall profilePage={profilePage}
+                  addPost={addPost}
+                  changeInputPost={changeInputPost}/>
         </div>
     );
 }

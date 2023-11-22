@@ -3,10 +3,25 @@ import s from './Dialogs.module.css'
 import Message from "./message/Message";
 import User from "./user/User";
 
-const Dialogs = ({dialogs, messages}) => {
+const Dialogs = ({dialogsPage, submitMessage, changeInputMessage}) => {
 
-    const dialogsElements = dialogs.map (user => <User key={user.id} name={user.name} id={user.id}/>)
-    const messagesElements = messages.map (message => <Message key={message.message} message={message.message}/>)
+    const dialogsElements = dialogsPage.dialogs.map (user => <User key={user.id}
+                                                                   name={user.name}
+                                                                   id={user.id}/>)
+    const messagesElements = dialogsPage.messages.map (message => <Message key={message.message}
+                                                                           message={message.message}
+                                                                           clas={message?.class}/>)
+
+    let textAreaValue = React.createRef()
+
+    const setChange = () => {
+        let text = textAreaValue.current.value;
+        changeInputMessage(text);
+    }
+
+    const addMessage = () => {
+        submitMessage();
+    }
 
     return (
         <div className={s.dialogs}>
@@ -16,7 +31,19 @@ const Dialogs = ({dialogs, messages}) => {
                     {dialogsElements}
                 </div>
                 <div className={s.chat}>
-                    {messagesElements}
+                    <div className={s.chatMessage}>
+                        {messagesElements}
+                    </div>
+                    <div className={s.addMessage}>
+                        <textarea className={s.input}
+                                  onChange={setChange}
+                                  ref={textAreaValue}
+                                  placeholder='Write message...'
+                                  value={dialogsPage.newTextMessage}
+                                  rows="3"/>
+                        <button className={s.button}
+                                onClick={addMessage}>Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
