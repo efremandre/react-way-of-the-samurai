@@ -2,20 +2,21 @@ import s from "./AddPost.module.css";
 import React from "react";
 
 const AddPost = ({
-                     addPost,
-                     changeInputPost,
+                     dispatch,
                      newTextPost
                  }) => {
 
     let textArea = React.createRef()
     const setChange = () => {
         let text = textArea.current.value;
-        changeInputPost(text)
+        dispatch({
+            type: 'ONCHANGE-INPUT-POST',
+            text: text
+        });
     }
 
     const newPost = () => {
-        let text = textArea.current.value;
-        addPost(text);
+        dispatch({type: 'ADD-NEW-POST'});
         textArea.current.value = '';
     }
 

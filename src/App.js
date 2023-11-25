@@ -18,14 +18,14 @@ const App = (props) => {
                 <Navbar/>
                 <main className='main'>
                     <Routes>
+                        <Route path='/'
+                               element={<News/>}/>
                         <Route path='/profile'
                                element={<Profile profilePage={props.state.profilePage}
-                                                 addPost={props.addPost}
-                                                 changeInputPost={props.changeInputPost}/>}/>
+                                                 dispatch={props.dispatch}/>}/>
                         <Route path='/dialogs/*'
                                element={<Dialogs dialogsPage={props.state.dialogsPage}
-                                                 submitMessage={props.submitMessage}
-                                                 changeInputMessage={props.changeInputMessage}/>}/>
+                                                 dispatch={props.dispatch}/>}/>
                         <Route path='/news'
                                element={<News/>}/>
                         <Route path='/music'

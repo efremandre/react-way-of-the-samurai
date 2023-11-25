@@ -3,24 +3,30 @@ import s from './Dialogs.module.css'
 import Message from "./message/Message";
 import User from "./user/User";
 
-const Dialogs = ({dialogsPage, submitMessage, changeInputMessage}) => {
+const Dialogs = ({
+                     dialogsPage,
+                     dispatch
+                 }) => {
 
-    const dialogsElements = dialogsPage.dialogs.map (user => <User key={user.id}
-                                                                   name={user.name}
-                                                                   id={user.id}/>)
-    const messagesElements = dialogsPage.messages.map (message => <Message key={message.message}
-                                                                           message={message.message}
-                                                                           clas={message?.class}/>)
+    const dialogsElements = dialogsPage.dialogs.map(user => <User key={user.id}
+                                                                  name={user.name}
+                                                                  id={user.id}/>)
+    const messagesElements = dialogsPage.messages.map(message => <Message key={message.message}
+                                                                          message={message.message}
+                                                                          clas={message?.class}/>)
 
     let textAreaValue = React.createRef()
 
     const setChange = () => {
         let text = textAreaValue.current.value;
-        changeInputMessage(text);
+        dispatch({
+            type: 'ONCHANGE-INPUT-MESSAGE',
+            text: text
+        });
     }
 
     const addMessage = () => {
-        submitMessage();
+        dispatch({type: 'SUBMIT-MESSAGE'});
     }
 
     return (
@@ -42,7 +48,8 @@ const Dialogs = ({dialogsPage, submitMessage, changeInputMessage}) => {
                                   value={dialogsPage.newTextMessage}
                                   rows="3"/>
                         <button className={s.button}
-                                onClick={addMessage}>Submit</button>
+                                onClick={addMessage}>Submit
+                        </button>
                     </div>
                 </div>
             </div>

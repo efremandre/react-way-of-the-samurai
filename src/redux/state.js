@@ -32,45 +32,51 @@ let store = {
     _callSubscriber() {
         console.log('Changed state');
     },
-    changeInputPost(text) {
-        this._state.profilePage.newTextPost = text;
-        this._callSubscriber(this._state);
-    },
-    changeInputMessage(text) {
-        this._state.dialogsPage.newTextMessage = text;
-        this._callSubscriber(this._state);
-    },
-    addPost() {
-        let id = 4
-
-        const newPost = {
-            id: id++,
-            name: 'Me',
-            like: 0,
-            dislike: 0,
-            text: this._state.profilePage.newTextPost,
-            image: 'https://krd.mir-kvestov.ru/uploads/quests/7110/large/notreal_kosmos_photo1.jpg?1692275778'
-        };
-
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newTextPost = '';
-        this._callSubscriber(this._state);
-    },
-    submitMessage(){
-        let id = 4
-        const newMessage = {
-            id: id++,
-            message: store._state.dialogsPage.newTextMessage,
-            class: 'me'
-        }
-
-        store._state.dialogsPage.messages.push(newMessage);
-        store._state.dialogsPage.newTextMessage = '';
-        store._callSubscriber(store._state);
-    },
+    changeInputPost(text) {},
+    changeInputMessage(text) {},
+    addPost() {},
+    submitMessage(){},
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-NEW-POST') {
+            let id = 4
+            const newPost = {
+                id: id++,
+                name: 'Me',
+                like: 0,
+                dislike: 0,
+                text: this._state.profilePage.newTextPost,
+                image: 'https://krd.mir-kvestov.ru/uploads/quests/7110/large/notreal_kosmos_photo1.jpg?1692275778'
+            };
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newTextPost = '';
+            this._callSubscriber(this._state);
+        }
+        else if (action.type === 'ONCHANGE-INPUT-POST') {
+            this._state.profilePage.newTextPost = action.text;
+            this._callSubscriber(this._state);
+        }
+        else if (action.type === 'SUBMIT-MESSAGE') {
+            let id = 4
+            const newMessage = {
+                id: id++,
+                message: store._state.dialogsPage.newTextMessage,
+                class: 'me'
+            }
+
+            store._state.dialogsPage.messages.push(newMessage);
+            store._state.dialogsPage.newTextMessage = '';
+            store._callSubscriber(store._state);
+        }
+        else if (action.type === 'ONCHANGE-INPUT-MESSAGE') {
+            this._state.dialogsPage.newTextMessage = action.text;
+            this._callSubscriber(this._state);
+        }
     }
 }
 
-export default store
+window.store = store;
+export default store;

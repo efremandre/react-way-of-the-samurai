@@ -5,8 +5,7 @@ import AddPost from "./addPost/AddPost";
 
 const Wall = ({
                   profilePage,
-                  addPost,
-                  changeInputPost
+                  dispatch
               }) => {
 
     const postsElement = profilePage.posts.map(post => <Post key={post.id}
@@ -17,9 +16,8 @@ const Wall = ({
                                                  avatar={post.image}/>)
     return (
         <div className={s.wall}>
-            <AddPost addPost={addPost}
-                     changeInputPost={changeInputPost}
-                     newTextPost={profilePage.newTextPost}/>
+            <AddPost newTextPost={profilePage.newTextPost}
+                     dispatch={dispatch}/>
             <div className={s.myPosts}>
                 {postsElement}
             </div>

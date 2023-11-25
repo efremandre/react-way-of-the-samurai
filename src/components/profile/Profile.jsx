@@ -6,8 +6,7 @@ import Wall from "./wall/Wall";
 
 const Profile = ({
                      profilePage,
-                     addPost,
-                     changeInputPost
+                     dispatch
                  }) => {
 
     return (
@@ -15,8 +14,7 @@ const Profile = ({
             <ProfileHeader/>
             <ProfileInfo/>
             <Wall profilePage={profilePage}
-                  addPost={addPost}
-                  changeInputPost={changeInputPost}/>
+                  dispatch={dispatch}/>
         </div>
     );
 }
