@@ -1,10 +1,36 @@
+const ADD_NEW_POST = 'ADD-NEW-POST';
+const ONCHANGE_INPUT_POST = 'ONCHANGE-INPUT-POST';
+const SUBMIT_MESSAGE = 'SUBMIT-MESSAGE';
+const ONCHANGE_INPUT_MESSAGE = 'ONCHANGE-INPUT-MESSAGE';
+
 let store = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, name: 'Kate', like: 10, dislike: 0, text: 'Hi', image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'},
-                {id: 2, name: 'Tom', like: 11, dislike: 5, text: 'Hello', image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'},
-                {id: 3, name: 'Dave', like: 5, dislike: 2, text: '....', image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'}
+                {
+                    id: 1,
+                    name: 'Kate',
+                    like: 10,
+                    dislike: 0,
+                    text: 'Hi',
+                    image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'
+                },
+                {
+                    id: 2,
+                    name: 'Tom',
+                    like: 11,
+                    dislike: 5,
+                    text: 'Hello',
+                    image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'
+                },
+                {
+                    id: 3,
+                    name: 'Dave',
+                    like: 5,
+                    dislike: 2,
+                    text: '....',
+                    image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'
+                }
             ],
             newTextPost: ''
         },
@@ -32,15 +58,19 @@ let store = {
     _callSubscriber() {
         console.log('Changed state');
     },
-    changeInputPost(text) {},
-    changeInputMessage(text) {},
-    addPost() {},
-    submitMessage(){},
+    changeInputPost(text) {
+    },
+    changeInputMessage(text) {
+    },
+    addPost() {
+    },
+    submitMessage() {
+    },
     subscribe(observer) {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-NEW-POST') {
+        if (action.type === ADD_NEW_POST) {
             let id = 4
             const newPost = {
                 id: id++,
@@ -55,11 +85,11 @@ let store = {
             this._state.profilePage.newTextPost = '';
             this._callSubscriber(this._state);
         }
-        else if (action.type === 'ONCHANGE-INPUT-POST') {
+        else if (action.type === ONCHANGE_INPUT_POST) {
             this._state.profilePage.newTextPost = action.text;
             this._callSubscriber(this._state);
         }
-        else if (action.type === 'SUBMIT-MESSAGE') {
+        else if (action.type === SUBMIT_MESSAGE) {
             let id = 4
             const newMessage = {
                 id: id++,
@@ -71,12 +101,19 @@ let store = {
             store._state.dialogsPage.newTextMessage = '';
             store._callSubscriber(store._state);
         }
-        else if (action.type === 'ONCHANGE-INPUT-MESSAGE') {
+        else if (action.type === ONCHANGE_INPUT_MESSAGE) {
             this._state.dialogsPage.newTextMessage = action.text;
             this._callSubscriber(this._state);
         }
     }
 }
+
+export const submitMessageActionCreation = () => ({type: SUBMIT_MESSAGE});
+
+export const onchangeInputMessageActionCreation = (valueTextArea) => ({
+    type: ONCHANGE_INPUT_MESSAGE,
+    text: valueTextArea
+});
 
 window.store = store;
 export default store;
