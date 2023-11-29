@@ -1,5 +1,9 @@
 import s from "./AddPost.module.css";
 import React from "react";
+import {
+    addPostActionCreation,
+    onchangeInputPostActionCreation
+} from "../../../../redux/profile-reducer.js";
 
 const AddPost = ({
                      dispatch,
@@ -9,14 +13,13 @@ const AddPost = ({
     let textArea = React.createRef()
     const setChange = () => {
         let text = textArea.current.value;
-        dispatch({
-            type: 'ONCHANGE-INPUT-POST',
-            text: text
-        });
+        const onchangeInputPost = onchangeInputPostActionCreation(text);
+        dispatch(onchangeInputPost);
     }
 
     const newPost = () => {
-        dispatch({type: 'ADD-NEW-POST'});
+        const addPost = addPostActionCreation()
+        dispatch(addPost);
         textArea.current.value = '';
     }
 

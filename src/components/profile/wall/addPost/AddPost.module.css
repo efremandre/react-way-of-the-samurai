@@ -10,10 +10,6 @@
     padding: .5em 1em;
 }
 
-.input::placeholder {
-    color: #fff;
-}
-
 .button {
     flex: 0 1 20%;
 }

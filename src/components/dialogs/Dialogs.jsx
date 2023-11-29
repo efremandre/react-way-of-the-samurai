@@ -5,7 +5,7 @@ import User from "./user/User";
 import {
     onchangeInputMessageActionCreation,
     submitMessageActionCreation
-} from "../../redux/state";
+} from "../../redux/dialogs-reducer.js";
 
 const Dialogs = ({
                      dialogsPage,
