@@ -1,7 +1,7 @@
 import React from "react";
 import s from './Wall.module.css'
 import Post from "./post/Post";
-import AddPost from "./addPost/AddPost";
+import AddPostContainer from "./addPost/AddPostContainer";
 
 const Wall = ({
                   profilePage,
@@ -16,7 +16,7 @@ const Wall = ({
                                                  avatar={post.image}/>)
     return (
         <div className={s.wall}>
-            <AddPost newTextPost={profilePage.newTextPost}
+            <AddPostContainer newTextPost={profilePage.newTextPost}
                      dispatch={dispatch}/>
             <div className={s.myPosts}>
                 {postsElement}

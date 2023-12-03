@@ -1,38 +1,32 @@
 import s from "./AddPost.module.css";
 import React from "react";
-import {
-    addPostActionCreation,
-    onchangeInputPostActionCreation
-} from "../../../../redux/profile-reducer.js";
 
 const AddPost = ({
-                     dispatch,
+                     setChange,
+                     newPost,
                      newTextPost
                  }) => {
 
     let textArea = React.createRef()
-    const setChange = () => {
+    const onSetChange = () => {
         let text = textArea.current.value;
-        const onchangeInputPost = onchangeInputPostActionCreation(text);
-        dispatch(onchangeInputPost);
+        setChange(text);
     }
 
-    const newPost = () => {
-        const addPost = addPostActionCreation()
-        dispatch(addPost);
-        textArea.current.value = '';
+    const onNewPost = () => {
+        newPost();
     }
 
     return (
         <div className={s.addpost}>
             <textarea className={s.input}
-                      onChange={setChange}
+                      onChange={onSetChange}
                       ref={textArea}
                       value={newTextPost}
                       rows="2"
                       placeholder='Write new Post...'/>
             <button className={s.button}
-                    onClick={newPost}>Enter
+                    onClick={onNewPost}>Enter
             </button>
         </div>
     );
