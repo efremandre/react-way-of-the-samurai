@@ -19,7 +19,6 @@ const AddPostContainer = ({
         const addPost = addPostActionCreation()
         dispatch(addPost);
     }
-
     return (<AddPost setChange={setChange} newPost={newPost} newTextPost={newTextPost}/>);
 }
 

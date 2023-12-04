@@ -4,18 +4,20 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import store from './redux/redux-store';
+import StoreContext from "./StoreContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const rerenderEntireTree = (state) => {
-
-    root.render(<App state={state}
-                     dispatch={store.dispatch.bind(store)}
-    />);
+const rerenderEntireTree = () => {
+    root.render(
+        <StoreContext.Provider value={store}>
+            <App />
+        </StoreContext.Provider>
+    );
 }
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 store.subscribe(() => {
-    rerenderEntireTree(store.getState());
+    rerenderEntireTree();
 });
 
 reportWebVitals();

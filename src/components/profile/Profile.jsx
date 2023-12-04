@@ -2,19 +2,19 @@ import React from "react";
 import s from './Profile.module.css'
 import ProfileHeader from "./profileHeader/ProfileHeader";
 import ProfileInfo from "./profileInfo/ProfileInfo";
-import Wall from "./wall/Wall";
+import WallContainer from "./wall/WallContainer";
+import StoreContext from "../../StoreContext";
 
-const Profile = ({
-                     profilePage,
-                     dispatch
-                 }) => {
-
+const Profile = () => {
     return (
         <div className={s.profile}>
             <ProfileHeader/>
             <ProfileInfo/>
-            <Wall profilePage={profilePage}
-                  dispatch={dispatch}/>
+            <StoreContext.Consumer>
+                {store => (
+                    <WallContainer profilePage={store.getState().profilePage}/>
+                )}
+            </StoreContext.Consumer>
         </div>
     );
 }

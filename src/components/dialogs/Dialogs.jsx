@@ -2,35 +2,18 @@ import React from "react";
 import s from './Dialogs.module.css'
 import Message from "./message/Message";
 import User from "./user/User";
-import {
-    onchangeInputMessageActionCreation,
-    submitMessageActionCreation
-} from "../../redux/dialogs-reducer.js";
+import SubmitMessageContainer from "./submit-message/SubmitMessageContainer";
+import StoreContext from "../../StoreContext";
 
-const Dialogs = ({
-                     dialogsPage,
-                     dispatch
-                 }) => {
+const Dialogs = ({ dialogsPage }) => {
 
     const dialogsElements = dialogsPage.dialogs.map(user => <User key={user.id}
                                                                   name={user.name}
                                                                   id={user.id}/>)
+
     const messagesElements = dialogsPage.messages.map(message => <Message key={message.message}
                                                                           message={message.message}
                                                                           clas={message?.class}/>)
-
-    let textArea = React.createRef()
-
-    const onChangeInput = () => {
-        let valueTextArea = textArea.current.value;
-        let action = onchangeInputMessageActionCreation(valueTextArea);
-        dispatch(action);
-    }
-
-    const submitMessage = () => {
-        let action = submitMessageActionCreation();
-        dispatch(action);
-    }
 
     return (
         <div className={s.dialogs}>
@@ -43,17 +26,12 @@ const Dialogs = ({
                     <div className={s.chatMessage}>
                         {messagesElements}
                     </div>
-                    <div className={s.addMessage}>
-                        <textarea className={s.input}
-                                  onChange={onChangeInput}
-                                  ref={textArea}
-                                  placeholder='Write message...'
-                                  value={dialogsPage.newTextMessage}
-                                  rows="3"/>
-                        <button className={s.button}
-                                onClick={submitMessage}>Submit
-                        </button>
-                    </div>
+                    <StoreContext.Consumer>
+                        {store => (
+                            <SubmitMessageContainer dialogsPage={store.getState().dialogsPage}
+                                                    dispatch={store.dispatch} />
+                        )}
+                    </StoreContext.Consumer>
                 </div>
             </div>
         </div>
