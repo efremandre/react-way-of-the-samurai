@@ -4,27 +4,27 @@ import {
     submitMessageActionCreation
 } from "../../../redux/dialogs-reducer";
 import SubmitMessage from "./SubmitMessage";
+import {connect} from "react-redux";
 
-const SubmitMessageContainer = ({
-                           dialogsPage,
-                           dispatch
-                       }) => {
-
-    const changeInput = (valueTextArea) => {
-        let action = onchangeInputMessageActionCreation(valueTextArea);
-        dispatch(action);
+const mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage,
     }
-
-    const submitMessage = () => {
-        let action = submitMessageActionCreation();
-        dispatch(action);
-    }
-
-    return (
-        <SubmitMessage dialogsPage={dialogsPage}
-                       submitMessage={submitMessage}
-                       changeInput={changeInput}/>
-    );
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeInput: (valueTextArea) => {
+            let action = onchangeInputMessageActionCreation(valueTextArea);
+            dispatch(action);
+        },
+        submitMessage: () => {
+            let action = submitMessageActionCreation();
+            dispatch(action);
+        }
+    }
+}
+
+const SubmitMessageContainer = connect(mapStateToProps, mapDispatchToProps) (SubmitMessage);
 
 export default SubmitMessageContainer

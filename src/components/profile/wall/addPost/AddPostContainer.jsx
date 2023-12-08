@@ -4,22 +4,26 @@ import {
     onchangeInputPostActionCreation
 } from "../../../../redux/profile-reducer.js";
 import AddPost from "./AddPost";
+import {connect} from "react-redux";
 
-const AddPostContainer = ({
-                     dispatch,
-                     newTextPost
-                 }) => {
-
-    const setChange = (text) => {
-        const onchangeInputPost = onchangeInputPostActionCreation(text);
-        dispatch(onchangeInputPost);
+const mapStateToProps = (state) => {
+    return {
+        newTextPost: state.profilePage.newTextPost,
     }
-
-    const newPost = () => {
-        const addPost = addPostActionCreation()
-        dispatch(addPost);
-    }
-    return (<AddPost setChange={setChange} newPost={newPost} newTextPost={newTextPost}/>);
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setChange: (text) => {
+            const onchangeInputPost = onchangeInputPostActionCreation(text);
+            dispatch(onchangeInputPost);
+        },
+        newPost: () => {
+            const addPost = addPostActionCreation()
+            dispatch(addPost);
+        },
+    }
+}
+
+const AddPostContainer = connect(mapStateToProps, mapDispatchToProps) (AddPost);
 
 export default AddPostContainer

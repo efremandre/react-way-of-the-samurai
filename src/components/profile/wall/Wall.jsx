@@ -2,7 +2,6 @@ import React from "react";
 import s from './Wall.module.css'
 import Post from "./post/Post";
 import AddPostContainer from "./addPost/AddPostContainer";
-import StoreContext from "../../../StoreContext";
 
 const Wall = ({
                   profilePage
@@ -16,12 +15,7 @@ const Wall = ({
 
     return (
         <div className={s.wall}>
-            <StoreContext.Consumer>
-                {store => (
-                    <AddPostContainer newTextPost={store.getState().profilePage.newTextPost}
-                                      dispatch={store.dispatch}/>
-                )}
-            </StoreContext.Consumer>
+            <AddPostContainer />
             <div className={s.myPosts}>
                 {postsElement}
             </div>

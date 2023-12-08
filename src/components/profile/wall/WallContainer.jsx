@@ -1,10 +1,13 @@
 import React from "react";
 import Wall from "./Wall";
+import {connect} from "react-redux";
 
-const WallContainer = ({profilePage}) => {
-    return (
-       <Wall profilePage={profilePage} />
-    );
+const mapStateToProps = (state) => {
+    return {
+        profilePage: state.profilePage,
+    }
 }
+
+const WallContainer = connect(mapStateToProps) (Wall);
 
 export default WallContainer

@@ -3,7 +3,6 @@ import s from './Dialogs.module.css'
 import Message from "./message/Message";
 import User from "./user/User";
 import SubmitMessageContainer from "./submit-message/SubmitMessageContainer";
-import StoreContext from "../../StoreContext";
 
 const Dialogs = ({ dialogsPage }) => {
 
@@ -26,12 +25,7 @@ const Dialogs = ({ dialogsPage }) => {
                     <div className={s.chatMessage}>
                         {messagesElements}
                     </div>
-                    <StoreContext.Consumer>
-                        {store => (
-                            <SubmitMessageContainer dialogsPage={store.getState().dialogsPage}
-                                                    dispatch={store.dispatch} />
-                        )}
-                    </StoreContext.Consumer>
+                    <SubmitMessageContainer />
                 </div>
             </div>
         </div>
