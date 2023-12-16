@@ -32,7 +32,7 @@ let initialState = {
 }
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_NEW_POST:
+        case ADD_NEW_POST: {
             let id = 4
             const newPost = {
                 id: id++,
@@ -43,12 +43,17 @@ const profileReducer = (state = initialState, action) => {
                 image: 'https://krd.mir-kvestov.ru/uploads/quests/7110/large/notreal_kosmos_photo1.jpg?1692275778'
             };
 
-            state.posts.push(newPost);
-            state.newTextPost = '';
-            return state;
-        case ONCHANGE_INPUT_POST:
-            state.newTextPost = action.valueTextAreaPost;
-            return state;
+            let newState = {...state};
+            newState.posts = [...state.posts];
+            newState.posts.push(newPost);
+            newState.newTextPost = '';
+            return newState;
+        }
+        case ONCHANGE_INPUT_POST: {
+            let newState = {...state};
+            newState.newTextPost = action.valueTextAreaPost;
+            return newState;
+        }
         default: return state;
     }
 }
