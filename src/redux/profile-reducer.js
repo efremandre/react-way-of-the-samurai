@@ -42,17 +42,17 @@ const profileReducer = (state = initialState, action) => {
                 text: state.newTextPost,
                 image: 'https://krd.mir-kvestov.ru/uploads/quests/7110/large/notreal_kosmos_photo1.jpg?1692275778'
             };
-
-            let newState = {...state};
-            newState.posts = [...state.posts];
-            newState.posts.push(newPost);
-            newState.newTextPost = '';
-            return newState;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newTextPost: ''
+            }
         }
         case ONCHANGE_INPUT_POST: {
-            let newState = {...state};
-            newState.newTextPost = action.valueTextAreaPost;
-            return newState;
+            return {
+                ...state,
+                newTextPost: action.valueTextAreaPost
+            };
         }
         default: return state;
     }
