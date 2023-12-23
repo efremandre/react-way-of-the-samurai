@@ -1,0 +1,12 @@
+.paginationList {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+li:hover {
+    color: aquamarine;
+    cursor: pointer;
+    transition: .6s;
+}

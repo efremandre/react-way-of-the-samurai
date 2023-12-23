@@ -23,7 +23,7 @@ const User = ({
         `"${user.status}"`;
 
     return (
-        <div key={user.id} className={style.userWrapper}>
+        <div className={style.userWrapper}>
             <div className={style.column}>
                 <div className={style.avatarWrapper}>
                     <img src={setAvatar} alt={user.name}/>

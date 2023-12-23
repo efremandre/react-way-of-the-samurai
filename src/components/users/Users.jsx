@@ -1,28 +1,33 @@
 import React from "react";
 import User from "./user/User";
-import axios from "axios";
+import style from "./Users.module.css";
 
-const Users = ({
-                   users,
-                   setFollow,
-                   setUnFollow,
-                   setUsers
-               }) => {
+const Users = (props) => {
 
-    if (users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                setUsers(response.data.items)
-            })
+    let pagesCount = Math.ceil(props.totalCount / props.userCount);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(<li key={i} className={(props.pageNumber === i) ? 'active' : ''}
+                       onClick={() => {
+                           props.onChangePagesPagination(i)
+                       }}>{i}</li>);
     }
 
     return (
         <div>
-            {users.map(user => < User user={user}
-                                      setFollow={setFollow}
-                                      setUnFollow={setUnFollow}/>)}
+            <div>
+                {props.users.map(user => < User
+                    key={user.id}
+                    user={user}
+                    setFollow={props.setFollow}
+                    setUnFollow={props.setUnFollow}/>)}
+            </div>
+            <ul className={style.paginationList}>
+                {pages}
+            </ul>
         </div>
     )
 }
+
 
 export default Users;
