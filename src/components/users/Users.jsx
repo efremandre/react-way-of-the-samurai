@@ -14,18 +14,25 @@ const Users = (props) => {
     }
 
     return (
-        <div>
-            <div>
-                {props.users.map(user => < User
-                    key={user.id}
-                    user={user}
-                    setFollow={props.setFollow}
-                    setUnFollow={props.setUnFollow}/>)}
+        <>
+            <div className={style.usersWrapper} >
+                {props.isFetching ? <div className={style.preloader}>
+                    <div className={style.preloaderWrappper}>
+                        <div className={style.spinner}></div>
+                    </div>
+                </div> : null}
+                <div className={style.users}>
+                    {props.users.map(user => < User
+                        key={user.id}
+                        user={user}
+                        setFollow={props.setFollow}
+                        setUnFollow={props.setUnFollow}/>)}
+                </div>
             </div>
             <ul className={style.paginationList}>
                 {pages}
             </ul>
-        </div>
+        </>
     )
 }
 
