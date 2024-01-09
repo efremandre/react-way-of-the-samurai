@@ -4,6 +4,8 @@ const SET_USERS = 'SET-USERS';
 const SET_PAGE_NUMBER = 'SET-PAGE-NUMBER';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
+const TOGGLE_IS_PAGINATION_NUMBER = 'TOGGLE-IS-PAGINATION-NUMBER';
+const SET_FLAG_PAGINATION_NUMBER = 'SET-FLAG-PAGINATION-NUMBER';
 
 let initialState = {
     users: [],
@@ -11,6 +13,12 @@ let initialState = {
     userCount: 10,
     totalCount: 0,
     isFetching: false,
+    pagination: {
+        flagPositionPagiantion: 0,
+        totalAmount: 0,
+        displayedSpan: 10,
+        startPeriod: 0,
+    }
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -62,6 +70,20 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
+        case TOGGLE_IS_PAGINATION_NUMBER: {
+            return {
+                ...state,
+                pagination: { ...state.pagination, displayedSpan: action.displayedSpan, startPeriod: action.startPeriod},
+            }
+        }
+
+        case SET_FLAG_PAGINATION_NUMBER: {
+            return {
+                ...state,
+                pagination: { ...state.pagination, flagPositionPagiantion: action.flagPositionPagiantion},
+            }
+        }
+
         default: return state;
     }
 }
@@ -96,6 +118,17 @@ export const setTotalCount = (totalCount) => ({
 export const toggleFetching = (isFetching) => ({
     type: TOGGLE_IS_FETCHING,
     isFetching: isFetching,
+});
+
+export const togglePaginationNumber = (startPeriod, displayedSpan) => ({
+    type: TOGGLE_IS_PAGINATION_NUMBER,
+    displayedSpan,
+    startPeriod,
+});
+
+export const setFlag = (flagPositionPagiantion) => ({
+    type: SET_FLAG_PAGINATION_NUMBER,
+    flagPositionPagiantion,
 });
 
 export default usersReducer;

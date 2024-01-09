@@ -26,13 +26,13 @@ const User = ({
         <div className={style.userWrapper}>
             <div className={style.column}>
                 <div className={style.avatarWrapper}>
-                    <img src={setAvatar} alt={user.name}/>
+                    <img width={50} src={setAvatar} alt={user.name}/>
                 </div>
             </div>
             <div className={style.column}>
                 <div className={style.infoOfUser}>
                     <div className={style.nameWrapper}>
-                        <span>{user.name} </span>
+                        <span>{user.name}</span>
                     </div>
                     <div className={style.placeWrapper}>
                         {/*<span>{"user.placeFrom.city"}, </span>*/}

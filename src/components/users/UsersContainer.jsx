@@ -1,11 +1,13 @@
 import React from "react";
 import {
+    setFlag,
     setFollow,
     setPageNumber,
     setTotalCount,
     setUnFollow,
     setUsers,
-    toggleFetching
+    toggleFetching,
+    togglePaginationNumber
 } from "../../redux/users-reducer";
 import {connect} from "react-redux";
 import axios from "axios";
@@ -32,6 +34,14 @@ class UsersAPI extends React.Component {
             })
     }
 
+    getPaginationButtons = (startPeriod, endPeriod) => {
+        this.props.togglePaginationNumber(startPeriod, endPeriod)
+    }
+
+    getFlag = (flagPositionPagiantion) => {
+        this.props.setFlag(flagPositionPagiantion)
+    }
+
     render() {
 
         return <Users users={this.props.users}
@@ -39,9 +49,14 @@ class UsersAPI extends React.Component {
                       userCount={this.props.userCount}
                       pageNumber={this.props.pageNumber}
                       onChangePagesPagination={this.onChangePagesPagination}
+                      getPaginationButtons={this.getPaginationButtons}
+                      getFlag={this.getFlag}
                       setFollow={this.props.setFollow}
                       setUnFollow={this.props.setUnFollow}
-                      isFetching={this.props.isFetching}/>
+                      isFetching={this.props.isFetching}
+                      displayedSpan={this.props.displayedSpan}
+                      startPeriod={this.props.startPeriod}
+                      flagPositionPagiantion={this.props.flagPositionPagiantion}/>
     }
 }
 
@@ -52,6 +67,9 @@ const mapStateToProps = (state) => {
         userCount: state.usersPages.userCount,
         totalCount: state.usersPages.totalCount,
         isFetching: state.usersPages.isFetching,
+        displayedSpan: state.usersPages.pagination.displayedSpan,
+        startPeriod: state.usersPages.pagination.startPeriod,
+        flagPositionPagiantion: state.usersPages.pagination.flagPositionPagiantion,
     }
 }
 
@@ -79,6 +97,6 @@ const mapStateToProps = (state) => {
 // }
 
 const UsersContainer = connect(mapStateToProps, {
-    setFollow, setUnFollow, setUsers, setPageNumber, setTotalCount, toggleFetching,
+    setFollow, setUnFollow, setUsers, setPageNumber, setTotalCount, toggleFetching, togglePaginationNumber, setFlag
 }) (UsersAPI);
 export default UsersContainer;

@@ -1,8 +1,19 @@
+.paginationWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .paginationList {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 5px;
+    margin: 0 20px;
+}
+
+button {
+    font-size: 12px;
 }
 
 li:hover {
