@@ -1,5 +1,7 @@
 .profileHeader {
+    position: absolute;
     overflow: hidden;
+    width: 100%;
     border-radius: 8px;
     height: 200px;
     margin-bottom: 1rem;

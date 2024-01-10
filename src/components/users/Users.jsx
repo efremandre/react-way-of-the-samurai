@@ -22,7 +22,7 @@ const Users = (props) => {
     let paginationNumber = pages.slice(startPeriod, endPeriod)
 
     const prevSetPagination = () => {
-        flagPositionPagiantion-=1
+        flagPositionPagiantion -= 1
         startPeriod -= 10
         endPeriod -= 10
         props.getFlag(flagPositionPagiantion)
@@ -30,7 +30,7 @@ const Users = (props) => {
     }
 
     const nextSetPagination = () => {
-        flagPositionPagiantion+=1
+        flagPositionPagiantion += 1
         startPeriod += 10
         endPeriod += 10
         props.getFlag(flagPositionPagiantion)
@@ -40,9 +40,9 @@ const Users = (props) => {
     return (
         <>
             <div className={style.usersWrapper}>
-                {props.isFetching ? <div className={style.preloader}>
-                    <div className={style.preloaderWrappper}>
-                        <div className={style.spinner}></div>
+                {props.isFetching ? <div className="preloader">
+                    <div className="preloaderWrappper">
+                        <div className="spinner"></div>
                     </div>
                 </div> : null}
                 <div className={style.users}>

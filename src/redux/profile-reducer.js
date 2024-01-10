@@ -1,5 +1,6 @@
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const ONCHANGE_INPUT_POST = 'ONCHANGE-INPUT-POST';
+const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 
 let initialState = {
     posts: [
@@ -28,8 +29,10 @@ let initialState = {
             image: 'https://hi-news.ru/wp-content/uploads/2014/12/kosmonavt_luna_otdyh_1920x1200-650x406-1.jpg'
         }
     ],
-    newTextPost: ''
+    newTextPost: '',
+    profile: null,
 }
+
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_NEW_POST: {
@@ -54,6 +57,12 @@ const profileReducer = (state = initialState, action) => {
                 newTextPost: action.valueTextAreaPost
             };
         }
+        case SET_PROFILE_INFO: {
+            return {
+                ...state,
+                profile: action.profile,
+            };
+        }
         default: return state;
     }
 }
@@ -63,5 +72,6 @@ export const onchangeInputPostActionCreation = (valueTextAreaPost) => ({
     valueTextAreaPost: valueTextAreaPost
 });
 export const addPostActionCreation = () => ({type: ADD_NEW_POST});
+export const setUsersProfile = (profile) => ({type: SET_PROFILE_INFO, profile});
 
 export default profileReducer;

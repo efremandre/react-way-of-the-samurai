@@ -73,29 +73,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         setFollow: (userId) => {
-//             dispatch(followingtActionCreation(userId))
-//         },
-//         setUnFollow: (userId) => {
-//             dispatch(unfollowingtActionCreation(userId))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersActionCreation(users))
-//         },
-//         setPageNumber: (pageNumber) => {
-//             dispatch(setPageNumberActionCreation(pageNumber))
-//         },
-//         setTotalCount: (totalCount) => {
-//             dispatch(setTotalCountActionCreation(totalCount))
-//         },
-//         toggleFetching: (isFetching) => {
-//             dispatch(toggleFetchingActionCreation(isFetching))
-//         },
-//     }
-// }
-
 const UsersContainer = connect(mapStateToProps, {
     setFollow, setUnFollow, setUsers, setPageNumber, setTotalCount, toggleFetching, togglePaginationNumber, setFlag
 }) (UsersAPI);

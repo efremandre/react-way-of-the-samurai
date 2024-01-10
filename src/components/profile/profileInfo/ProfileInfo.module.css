@@ -1,10 +1,46 @@
 .profileInfo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    padding: 100px 1rem 25px 1rem;
     margin-bottom: 1rem;
 }
 
 .mainAvatar {
-    width: 60px;
-    height: 60px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     overflow: hidden;
+}
+
+.bio {
+
+}
+
+.name {
+    font-size: 36px;
+}
+
+.status {
+    margin: .5rem 0;
+}
+
+.contacts {
+    display: flex;
+    gap: 1rem;
+}
+
+.contacts a {
+    text-decoration: underline;
+}
+
+.contacts a:hover {
+    text-decoration: none;
+}
+
+.job {
+    font-size: 11px;
+    color: green;
 }

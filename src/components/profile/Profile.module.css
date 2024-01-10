@@ -1,4 +1,5 @@
 .profile {
+    position: relative;
     animation: active forwards 1s ease;
 }
 

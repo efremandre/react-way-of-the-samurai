@@ -2,10 +2,18 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1rem;
     padding: 1rem;
     border: 1px solid #000;
     border-radius: 8px;
+}
+
+.userLink {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.userLink:hover {
+    text-decoration: underline;
 }
 
 .column:nth-child(2) {
@@ -20,7 +28,7 @@
 }
 
 .nameWrapper {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .statusWrapper {
@@ -31,10 +39,16 @@
     margin-bottom: 0;
 }
 
+.btnWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .avatarWrapper {
     overflow: hidden;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     animation: splachingBg 1s infinite;
 }
