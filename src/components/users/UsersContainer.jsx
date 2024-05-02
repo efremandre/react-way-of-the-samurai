@@ -16,7 +16,9 @@ import Users from "./Users";
 class UsersAPI extends React.Component {
     componentDidMount() {
         this.props.toggleFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.pageNumber}&count=${this.props.userCount}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.pageNumber}&count=${this.props.userCount}`, {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.toggleFetching(false);
                 this.props.setUsers(response.data.items);
@@ -27,7 +29,9 @@ class UsersAPI extends React.Component {
     onChangePagesPagination = (pageNumber) => {
         this.props.toggleFetching(true);
         this.props.setPageNumber(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.userCount}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.userCount}`, {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.toggleFetching(false);
                 this.props.setUsers(response.data.items);

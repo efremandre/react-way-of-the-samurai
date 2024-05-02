@@ -2,6 +2,7 @@ import React from "react";
 import style from './User.module.css';
 import plugAvatar from '../../../assets/images/plugAvatar.jpg'
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const User = ({
                   user,
@@ -10,11 +11,27 @@ const User = ({
               }) => {
 
     const follow = () => {
-        setFollow(user.id)
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                withCredentials: true,
+                headers: {
+                    "API-KEY" : "a1be0c1c-9f8d-4a7f-898f-33867fb061f5"
+                }
+            })
+            .then(response => {
+                if (response.data.resultCode === 0) setFollow(user.id)
+            })
     }
 
     const unFollow = () => {
-        setUnFollow(user.id)
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                withCredentials: true,
+                headers: {
+                    "API-KEY" : "a1be0c1c-9f8d-4a7f-898f-33867fb061f5"
+                }
+            })
+            .then(response => {
+                if (response.data.resultCode === 0) setUnFollow(user.id)
+            })
     }
 
     const setAvatar = (user.photos.large === null) ? plugAvatar :
@@ -47,7 +64,8 @@ const User = ({
                     </div>
                     <div className={style.btnWrapper}>
                         <div className={style.followingBtn}>
-                            {(user.following) ? <button className="red" onClick={unFollow}>Unfollow</button> :
+                            {(user.followed) ?
+                                <button className="red" onClick={unFollow}>Unfollow</button> :
                                 <button className="green" onClick={follow}>Follow</button>}
                         </div>
                     </div>

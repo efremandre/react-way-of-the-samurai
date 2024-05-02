@@ -24,7 +24,6 @@ const ProfileInfo = (props) => {
                 </div>
                 <div className={s.status}>
                     {setAboutMe}
-
                 </div>
                 <div className={s.contacts}>
                     {(props.profile.contacts.github !== null) ? <a href={props.profile.contacts.github}>My GitHub</a> : null}
